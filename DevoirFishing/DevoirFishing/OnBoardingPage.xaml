@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:magic="clr-namespace:MagicGradients.Animation.Tween;assembly=MagicGradients"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:magic1="http://magic.com/schemas/gradients" xmlns:viewModels="clr-namespace:DevoirFishing.ViewModels" xmlns:Models="clr-namespace:DevoirFishing.Models"
+             mc:Ignorable="d"
+             x:Class="DevoirFishing.OnBoardingPage">
+    <ContentPage.BindingContext>
+        <viewModels:OnboardingViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <CarouselView Grid.Row="0"
+                          BackgroundColor="Blue"
+
+                          Grid.RowSpan="2"
+                          ItemsSource="{Binding Items}">
+                
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:OnboardingModel">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="1" BackgroundColor="Blue">
+                                <Label Text="{Binding Title}" 
+                                       Style ="{StaticResource OnboardingHeader}" />
+                                <Label Text="{Binding Content}" 
+                                       Style ="{StaticResource OnboardingHeader}" />
+                            </StackLayout>
+                            
+                        </Grid>
+                        
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+                          
+            
+            <BoxView Color="Yellow"/>
+
+                <magic1:GradientView>
+                    <magic1:GradientCollection>
+                        <magic1:RadialGradient
+                            x:Name="myRadialgradient"
+                            Center=".3,0"
+                            RadiusX="3000">
+                            <magic1:GradientStop Color ="Transparent" Offset ="0"/>
+                            <magic1:GradientStop Color ="Transparent" Offset =".9"/>
+                            <magic1:GradientStop Color ="{StaticResource Background}" Offset ="1"/>
+                    </magic1:RadialGradient>
+                        
+                    </magic1:GradientCollection>
+                    
+                </magic1:GradientView>
+            <!--<BoxView Grid.Row="1" Color ="{StaticResource Background}"/>-->
+
+            <StackLayout
+                Grid.Row="1"
+                Orientation="Vertical"
+                VerticalOptions="End">
+                <!--<Slider 
+                    Maximum="10"
+                    Minimum="0"
+                    ValueChanged="Slider_ValueChanged" 
+                    Value="1"/>-->
+            </StackLayout>
+
+            <Button
+                Grid.Row="1"
+                Clicked="Button_Clicked"
+                VerticalOptions="End"
+                Text="Thanks"/>
+            <BoxView
+                x:Name="FadeBox"
+                InputTransparent="True"
+                Opacity="0"
+                Color="Black"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
